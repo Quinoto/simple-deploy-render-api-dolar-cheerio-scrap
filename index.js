@@ -5,11 +5,16 @@
 
 import express from 'express';
 import axios from "axios";
-import * as cheerio from 'cheerio'; 
+import * as cheerio from 'cheerio';
+import cors from 'cors'
+
 const app = express();
+const corsOptions = {
+    origin: '*',
+}
 
-app.get("/", async(req, res) => {
-
+app.get("/", cors(), async(req, res) => {
+    console.log("entró aquí")
     try {
         const {data} = await axios.get('https://www.bcentral.cl/inicio');
         // axios siempre devuelve a través del objeto llamado "data"
