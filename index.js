@@ -9,9 +9,6 @@ import * as cheerio from 'cheerio';
 import cors from 'cors'
 
 const app = express();
-const corsOptions = {
-    origin: '*',
-}
 
 app.get("/", cors(), async(req, res) => {
     console.log("entró aquí")
