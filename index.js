@@ -10,23 +10,23 @@ import cors from "cors";
 
 const app = express();
 
-app.get("/", cors(), async(req, res) => {
-    console.log("entró aquí")
+app.get("/", cors(), async (req, res) => {
+    console.log("entro aqui")
     try {
-        const {data} = await axios.get("https://www.bcentral.cl/inicio");
+        const { data } = await axios.get("https://www.bcentral.cl/inicio");
         // axios siempre devuelve a través del objeto llamado "data"
         const $ = cheerio.load(data)
         // cheerio usa el $ para acceder a través selector CSS a los elementos de una web
         const selectorDolar =
-        "#_BcentralIndicadoresViewer_INSTANCE_pLcePZ0Eybi8_myTooltipDelegate > div > div > div.fin-indicators-col1 > div > div > div:nth-child(3) > div > p.basic-text.fs-2.f-opensans-bold.text-center.c-blue-nb-2"
-        
+            "#_BcentralIndicadoresViewer_INSTANCE_pLcePZ0Eybi8_myTooltipDelegate > div > div > div.fin-indicators-col1 > div > div > div:nth-child(3) > div > p.basic-text.fs-2.f-opensans-bold.text-center.c-blue-nb-2"
+
         console.log($(selectorDolar).text)
 
-        const selectorUF = "#_BcentralIndicadoresViewer_INSTANCE_pLcePZ0Eybi8_myTooltipDelegate > div > div > div.fin-indicators-col1 > div > div > div:nth-child(1) > div > p.basic-text.fs-2.f-opensans-bold.text-center.c-blue-nb-2"
+        const selectorUF =                                          "#_BcentralIndicadoresViewer_INSTANCE_pLcePZ0Eybi8_myTooltipDelegate > div > div > div.fin-indicators-col1 > div > div > div:nth-child(1) > div > p.basic-text.fs-2.f-opensans-bold.text-center.c-blue-nb-2"
 
 
         // res.json({ dolar: $(selectorDolar).text() });
-        
+
 
         const objetoValores = {
             fecha: new Date(),
@@ -37,8 +37,8 @@ app.get("/", cors(), async(req, res) => {
         res.json(objetoValores);
 
     } catch (error) {
-        res.json({error})
-    }   
+        res.json({ error })
+    }
 });
 
 const PORT = process.env.PORT || 5000;
