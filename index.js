@@ -7,7 +7,6 @@ import express from 'express';
 import axios from "axios";
 import * as cheerio from 'cheerio';
 import cors from 'cors';
-
 const app = express();
 
 app.get("/", cors(), async(req, res) => {
